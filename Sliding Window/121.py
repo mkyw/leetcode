@@ -18,3 +18,31 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 Constraints:
 1 <= prices.length <= 105
 0 <= prices[i] <= 104'''
+
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        sell = prices[len(prices) - 1]
+        profit = 0
+
+        i = len(prices) - 2
+
+        while i >= 0:
+            if prices[i] > sell:
+                sell = prices[i]
+            if sell - prices[i] > profit:
+                profit = sell - prices[i]
+            i-=1
+        
+        return profit
+    
+s = Solution()
+prices = [7,1,5,3,6,4]
+print(s.maxProfit(prices))
+prices = [7,6,4,3,1]
+print(s.maxProfit(prices))
+prices = [1,2]
+print(s.maxProfit(prices))
